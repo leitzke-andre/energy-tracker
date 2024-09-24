@@ -28,6 +28,7 @@ class Contract
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $endDate = null;
 
+    // Currently assuming that values are added in Eurocents.
     #[ORM\Column]
     private ?int $pricePerKwh = null;
 

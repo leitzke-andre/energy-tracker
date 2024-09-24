@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reading index{% endblock %}
+
+{% block body %}
+    <h1>Reading index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ReadingDate</th>
+                <th>ValueinKwh</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reading in readings %}
+            <tr>
+                <td>{{ reading.id }}</td>
+                <td>{{ reading.readingDate ? reading.readingDate|date('Y-m-d') : '' }}</td>
+                <td>{{ reading.valueinKwh }}</td>
+                <td>{{ reading.comment }}</td>
+                <td>
+                    <a href="{{ path('app_reading_show', {'id': reading.id}) }}">show</a>
+                    <a href="{{ path('app_reading_edit', {'id': reading.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reading_new') }}">Create new</a>
+{% endblock %}
